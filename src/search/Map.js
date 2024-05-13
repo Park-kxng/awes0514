@@ -54,9 +54,9 @@ const Map = ({ selectedFilters ,gu, currentLat, currentLng}) => {
     // API에서 데이터 가져올 때 각 마커에 해당하는 카테고리를 추가하도록 수정
   const fetchData = async (category) => {
     try {
-      const response = await fetch(`https://awes2024.vercel.app/awes-api/searchOneCategory?address=${gu}&category=${category}`);
+      // const response = await fetch(`https://awes2024.vercel.app/awes-api/searchOneCategory?address=${gu}&category=${category}`);
 
-      // const response = await fetch(`http://3.39.223.21:8080/searchOneCategory?address=${gu}&category=${category}`);
+      const response = await fetch(`http://3.39.223.21:8080/searchOneCategory?address=${gu}&category=${category}`);
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
