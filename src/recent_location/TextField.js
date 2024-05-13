@@ -215,7 +215,7 @@ function LocationSearchField({setWeatherData, setCurrentLocation}) {
 
   const fetchWeatherData = async (spotName) => {
     try {
-      const response = await fetch(`/https://awes0514.vercel.app/${SEOUL_OPEN_DATA_AUTH_KEY}/json/citydata/131/168/${spotName}`);
+      const response = await fetch(`https://awes0514.vercel.app/${SEOUL_OPEN_DATA_AUTH_KEY}/json/citydata/131/168/${spotName}`);
       // const response = await fetch(`http://openapi.seoul.go.kr:8088/${SEOUL_OPEN_DATA_AUTH_KEY}/json/citydata/131/168/${spotName}`);
 
       const data = await response.json();
