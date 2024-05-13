@@ -41,8 +41,8 @@ function RecommendDetail(  ) {
         try {
             const categories = filters.split(',').map(filter => filterTrans[filter]).join(',');
             console.log(currentLocation, placeNum, filters)
-            // const response = await fetch(`/awes-api/recommend?latitude=37.659223&longitude=127.050265&num=${placeNum}&category=${filters}`);
-            const response = await fetch(`http://3.39.223.21:8080/recommend?latitude=37.659223&longitude=127.050265&num=${placeNum}&category=${filters}`);
+            const response = await fetch(`/awes-api/recommend?latitude=37.659223&longitude=127.050265&num=${placeNum}&category=${filters}`);
+            // const response = await fetch(`http://3.39.223.21:8080/recommend?latitude=37.659223&longitude=127.050265&num=${placeNum}&category=${filters}`);
             console.log(response)
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
