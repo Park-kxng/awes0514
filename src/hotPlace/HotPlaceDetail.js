@@ -47,7 +47,7 @@ function HotPlaceDetail() {
         async function fetchPlaceData() {
             try {
    
-                const response = await fetch(`http://openapi.seoul.go.kr:8088/${SEOUL_OPEN_DATA_AUTH_KEY}/json/citydata/1/5/${placeName}`);
+                const response = await fetch(`/seoul-api/${SEOUL_OPEN_DATA_AUTH_KEY}/json/citydata/1/5/${placeName}`);
                 const data = await response.json();
                 // CITYDATA 객체 안에 있는 AREA_NM 속성 가져오기
                 const weather = data.CITYDATA.WEATHER_STTS[0];
