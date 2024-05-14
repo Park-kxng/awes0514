@@ -51,7 +51,9 @@ function HotPlaceDetail() {
                 // const response = await fetch(`http://openapi.seoul.go.kr:8088/${SEOUL_OPEN_DATA_AUTH_KEY}/json/citydata/1/5/${placeName}`);
 
                 const response = await fetch(`/seoul-api/${SEOUL_OPEN_DATA_AUTH_KEY}/json/citydata/1/5/${placeName}`);
+                console.log("log---------",response)
                 const data = await response.json();
+                console.log("log---------",data)
                 // CITYDATA 객체 안에 있는 AREA_NM 속성 가져오기
                 const weather = data.CITYDATA.WEATHER_STTS[0];
                 const traffic = data.CITYDATA.ROAD_TRAFFIC_STTS.AVG_ROAD_DATA;
@@ -78,6 +80,7 @@ function HotPlaceDetail() {
                 setBike(bike)
                 setParking(parking)
                 setSubway(subway)
+                console.log("log2---------",subway,bike,parking,culture)
 
             } catch (error) {
                 console.error('Error fetching place data:', error);
@@ -85,6 +88,7 @@ function HotPlaceDetail() {
         }
         fetchPlaceData().then(() => {
           setIsLoading(false);  // 데이터 로딩이 완료되면 isLoading을 false로 설정
+
         });
     }, [placeName]);
     // 홈 화면으로 돌아가는 함수

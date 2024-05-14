@@ -6,9 +6,19 @@
     padding:0;
     
   }
+  .hot-places-list-recommend {
+    max-height: 400px; /* 최대 높이 설정 */ 
+    width: 100%; /* 가로 길이를 컨테이너에 꽉 차게 조정 */
+
+    overflow-y: auto; /* 세로 방향으로 스크롤 가능하도록 설정 */
+    list-style-type: none;
+    padding:0;
+    
+  }
   
   .hot-place-item {
-    
+    width: 100%; /* 가로 길이를 컨테이너에 꽉 차게 조정 */
+
     padding: 15px;
     margin-bottom: 20px;
     border-radius: 8px;

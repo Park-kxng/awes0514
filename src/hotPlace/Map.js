@@ -139,84 +139,7 @@ const markerIcons = {
   "문화": "http://maps.google.com/mapfiles/ms/icons/red-dot.png",
   "지하철": "http://maps.google.com/mapfiles/ms/icons/yellow-dot.png"
 };
-const integrateData = (inf1, inf2, inf3, inf4, selectedFilters) => {
-  const filteredMarkers = [];
 
-  // 선택된 필터에 따라 마커 필터링
-  // 문화 정보 처리
-  if (selectedFilters.includes("문화")) {
-    inf1.forEach((event) => {
-      const { EVENT_X, EVENT_Y, EVENT_NM, EVENT_PLACE, EVENT_PERIOD, URL, THUMBNAIL } = event;
-      filteredMarkers.push({
-        lat: parseFloat(EVENT_Y),
-        lng: parseFloat(EVENT_X),
-        type: "문화",
-        detail: {
-          name: EVENT_NM,
-          place: EVENT_PLACE,
-          period: EVENT_PERIOD,
-          url: URL,
-          thumbnail: THUMBNAIL
-        }
-      });
-    });
-  }
-
-  // 주차장 정보 처리
-  if (selectedFilters.includes("주차장")) {
-    inf2.forEach((parking) => {
-      const { LAT, LNG, PRK_NM, ADDRESS, RATES, PAY_YN } = parking;
-      filteredMarkers.push({
-        lat: parseFloat(LAT),
-        lng: parseFloat(LNG),
-        type: "주차장",
-        detail: {
-          name: PRK_NM,
-          address: ADDRESS,
-          rates: RATES,
-          pay: PAY_YN
-        }
-      });
-    });
-  }
-
-  // 지하철 정보 처리
-  if (selectedFilters.includes("지하철")) {
-    inf3.forEach((subway) => {
-      const { SUB_STN_X, SUB_STN_Y, SUB_STN_NM, SUB_STN_LINE, SUB_STN_RADDR, SUB_STN_JIBUN } = subway;
-      filteredMarkers.push({
-        lat: parseFloat(SUB_STN_Y),
-        lng: parseFloat(SUB_STN_X),
-        type: "지하철",
-        detail: {
-          name: SUB_STN_NM,
-          line: SUB_STN_LINE,
-          address: SUB_STN_RADDR,
-          jibun: SUB_STN_JIBUN
-        }
-      });
-    });
-  }
-
-  // 자전거 정보 처리
-  if (selectedFilters.includes("자전거")) {
-    inf4.forEach((bike) => {
-      const { SBIKE_X, SBIKE_Y, SBIKE_SPOT_NM, SBIKE_SHARED, SBIKE_PARKING_CNT } = bike;
-      filteredMarkers.push({
-        lat: parseFloat(SBIKE_Y),
-        lng: parseFloat(SBIKE_X),
-        type: "자전거",
-        detail: {
-          name: SBIKE_SPOT_NM,
-          shared: SBIKE_SHARED,
-          parkingCnt: SBIKE_PARKING_CNT
-        }
-      });
-    });
-  }
-
-  return filteredMarkers;
-};
 const Map = ({ placeName, inf1, inf2, inf3, inf4, selectedFilters }) => {
   const [currentPosition, setCurrentPosition] = useState(defaultCenter);
   const [selectedMarker, setSelectedMarker] = useState(null);
@@ -224,7 +147,84 @@ const Map = ({ placeName, inf1, inf2, inf3, inf4, selectedFilters }) => {
   const [isDataLoaded, setIsDataLoaded] = useState(false); // 데이터 로드 여부 상태 변수 추가
   const [placeNameData, setPlaceNameData ] = useState([]);
   const isPlaceInTouristSpots = touristSpots.some(spot => spot.name === placeName);
+  const integrateData = (inf1, inf2, inf3, inf4, selectedFilters) => {
+    const filteredMarkers = [];
   
+    // 선택된 필터에 따라 마커 필터링
+    // 문화 정보 처리
+    if (selectedFilters.includes("문화")) {
+      inf1.forEach((event) => {
+        const { EVENT_X, EVENT_Y, EVENT_NM, EVENT_PLACE, EVENT_PERIOD, URL, THUMBNAIL } = event;
+        filteredMarkers.push({
+          lat: parseFloat(EVENT_Y),
+          lng: parseFloat(EVENT_X),
+          type: "문화",
+          detail: {
+            name: EVENT_NM,
+            place: EVENT_PLACE,
+            period: EVENT_PERIOD,
+            url: URL,
+            thumbnail: THUMBNAIL
+          }
+        });
+      });
+    }
+  
+    // 주차장 정보 처리
+    if (selectedFilters.includes("주차장")) {
+      inf2.forEach((parking) => {
+        const { LAT, LNG, PRK_NM, ADDRESS, RATES, PAY_YN } = parking;
+        filteredMarkers.push({
+          lat: parseFloat(LAT),
+          lng: parseFloat(LNG),
+          type: "주차장",
+          detail: {
+            name: PRK_NM,
+            address: ADDRESS,
+            rates: RATES,
+            pay: PAY_YN
+          }
+        });
+      });
+    }
+  
+    // 지하철 정보 처리
+    if (selectedFilters.includes("지하철")) {
+      inf3.forEach((subway) => {
+        const { SUB_STN_X, SUB_STN_Y, SUB_STN_NM, SUB_STN_LINE, SUB_STN_RADDR, SUB_STN_JIBUN } = subway;
+        filteredMarkers.push({
+          lat: parseFloat(SUB_STN_Y),
+          lng: parseFloat(SUB_STN_X),
+          type: "지하철",
+          detail: {
+            name: SUB_STN_NM,
+            line: SUB_STN_LINE,
+            address: SUB_STN_RADDR,
+            jibun: SUB_STN_JIBUN
+          }
+        });
+      });
+    }
+  
+    // 자전거 정보 처리
+    if (selectedFilters.includes("자전거")) {
+      inf4.forEach((bike) => {
+        const { SBIKE_X, SBIKE_Y, SBIKE_SPOT_NM, SBIKE_SHARED, SBIKE_PARKING_CNT } = bike;
+        filteredMarkers.push({
+          lat: parseFloat(SBIKE_Y),
+          lng: parseFloat(SBIKE_X),
+          type: "자전거",
+          detail: {
+            name: SBIKE_SPOT_NM,
+            shared: SBIKE_SHARED,
+            parkingCnt: SBIKE_PARKING_CNT
+          }
+        });
+      });
+    }
+  
+    return filteredMarkers;
+  };
   useEffect(() => {
     const place = touristSpots.find(spot => spot.name === placeName);
     console.log(place)
@@ -242,18 +242,12 @@ const Map = ({ placeName, inf1, inf2, inf3, inf4, selectedFilters }) => {
   
   useEffect(() => {
     // inf1, inf2, inf3, inf4 정보가 모두 유효하고 selectedFilters가 있는 경우에만 처리
-    if (inf1 && inf2 && inf3 && inf4 && selectedFilters) {
-      setIsDataLoaded(true); // 데이터 로드됨을 표시
-    }
-  }, [inf1, inf2, inf3, inf4, selectedFilters]);
-  
-  // 위치 데이터 및 필요한 데이터가 로드된 후에 마커 설정
-  useEffect(() => {
-    if (isDataLoaded) {
+    if (inf1 && inf2 && inf3 && inf4 && selectedFilters.length > 0) {
       const filteredMarkers = integrateData(inf1, inf2, inf3, inf4, selectedFilters);
       setMarkers(filteredMarkers);
+      setIsDataLoaded(true); // 데이터 로드됨을 표시
     }
-  }, [isDataLoaded]);
+  }, [inf1, inf2, inf3, inf4, selectedFilters]); // 의존성 배열에 selectedFilters 추가
 
 
   const handleMarkerClick = (marker) => {

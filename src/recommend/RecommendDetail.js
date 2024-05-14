@@ -81,6 +81,11 @@ function RecommendDetail(  ) {
                 </div>
             </header>
             <div className="body-content">
+                <div className="block3">
+                    <h2>어서울이 추천하는 관광코스!</h2> 
+                    <div className='detail'>마커를 클릭하면 더 상세한 정보를 볼 수 있어요.     </div>              
+                    <Map allData = {allData}  allselectedFilters={filters} gu = {currentLocation} currentLat={37.659223} currentLng={127.050265}/>
+                </div>
                 <div className="container-row">
 
                     {filters.split(',').map((filter, index) => {
@@ -89,7 +94,7 @@ function RecommendDetail(  ) {
                             <div className="block3" key={index}>
                                 <h2 style={{ color: `#${filterColor[filter]}` }}>{filter}</h2>
                                 {allData[key] && allData[key].length > 0 ? (
-                                    <ul className="hot-places-list">
+                                    <ul className="hot-places-list-recommend">
                                         {allData[key].map((item, itemIndex) => (
                                             <li key={item.id} className="hot-place-item">
                                                 <h3 >{item.name}</h3>
@@ -127,11 +132,7 @@ function RecommendDetail(  ) {
                         );
                     })}
                 </div>
-                <div className="block3">
-                    <h2>어서울이 추천하는 관광코스!</h2> 
-                    <div className='detail'>마커를 클릭하면 더 상세한 정보를 볼 수 있어요.     </div>              
-                    <Map allData = {allData}  allselectedFilters={filters} gu = {currentLocation} currentLat={37.659223} currentLng={127.050265}/>
-                </div>
+                
                
             </div>
             <footer className="footer">
