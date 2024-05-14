@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import Map from './search/Map.js';
 import { useNavigate } from 'react-router-dom';
-
+import "./App.css";
 import "./Home.css";
 
 import LocationSearchField from "./recent_location/TextField";
@@ -37,6 +37,7 @@ function App() {
   }
 
   return (
+    <div style={{ fontFamily: 'NanumBarunGothic' }}>
     <div className="app_container">
     <header className="header">
       <div className="app-header-left-content">
@@ -46,9 +47,11 @@ function App() {
       <div className="app-header-right-content">
        <LanSelection />
       </div>
+      
     </header>
 
     <div className="body-content">
+    <div className='ex'>날씨, 관광지, 핫플 그리고 관광코스 추천까지! 현재 위치 검색 후 관광에 관련된 다양한 정보를 만나보세요. </div>
       <div className="block">
             <LocationSearchField setWeatherData={setWeatherData} setCurrentLocation = {setCurrentLocation}/>
       </div>
@@ -89,6 +92,7 @@ function App() {
           </div>
           <div className="block_top">
           <h2>서울의 핫플 Top5</h2>
+          <div className='content'>핫플레이스를 클릭하면 더 자세한 관광정보를 볼 수 있어요!</div>
           <HotPlaces/>
           </div>    
         </div>
@@ -96,7 +100,7 @@ function App() {
       
         <div className="block2">
           <h2>주변 관광지 찾아보기</h2>
-          필터 (복수 선택 가능) - 마커를 클릭하면 더 상세한 정보를 볼 수 있어요!
+          <div className='content'> 필터 (복수 선택 가능) - 마커를 클릭하면 더 상세한 정보를 볼 수 있어요!</div>
           <ReFilterButtons selectedFilters={selectedFilters} setSelectedFilters={setSelectedFilters} />
           <Map selectedFilters={selectedFilters} gu = {gu} currentLat={lat} currentLng={lng} />
         </div>
@@ -104,6 +108,8 @@ function App() {
       
       <div className="block">
       <h2>관광 코스 추천 받기</h2>
+      <div className='content'> 코스를 선택하면 위치 주변의 관광코스를 추천해드려요! <br/> </div>
+      <br></br>
       장소의 갯수를 선택해주세요
       <NumFilterButtons placeNum={placeNum} setPlaceNum = {setPlaceNum} />
       원하는 분류를 선택해주세요 (복수선택 가능)
@@ -116,7 +122,7 @@ function App() {
           onClick={() => RecommnedBtnClick(placeNum, selectedRecommendFilters, gu)}
           disabled={!isButtonEnabled}
         >
-          추천 받기
+          <div className='font'>추천 받기</div>
         </button>
       </div>
     </div>
@@ -128,7 +134,7 @@ function App() {
     
     </div>
     
-   
+    </div>
   );
 }
 

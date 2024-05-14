@@ -16,7 +16,8 @@ const FilterButtons = ({ placeNum, setPlaceNum }) => {
           className={placeNum === index ? "selected_filter_button" : "filter_button"}
           onClick={() => handleButtonClick(index)}
         >
-          {number}
+        <div className='font'>{number}</div>
+
         </button>
       ))}
     </div>
