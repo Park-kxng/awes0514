@@ -225,7 +225,6 @@ const Map = ({ placeName, inf1, inf2, inf3, inf4, selectedFilters }) => {
   const [placeNameData, setPlaceNameData ] = useState([]);
   const isPlaceInTouristSpots = touristSpots.some(spot => spot.name === placeName);
   
-  
   useEffect(() => {
     const place = touristSpots.find(spot => spot.name === placeName);
     console.log(place)

@@ -36,6 +36,8 @@ function HotPlaceDetail() {
     const { index } = useParams();
 
     const [placeData, setPlaceData] = useState(null);
+    const [isLoading, setIsLoading] = useState(true);  // 로딩 상태를 관리하는 상태 변수
+
     const SEOUL_OPEN_DATA_AUTH_KEY= "515653596b79756a38384a77506645";
     const navigate = useNavigate();
      // 필터링된 값을 업데이트하는 함수
@@ -81,7 +83,9 @@ function HotPlaceDetail() {
                 console.error('Error fetching place data:', error);
             }
         }
-        fetchPlaceData();
+        fetchPlaceData().then(() => {
+          setIsLoading(false);  // 데이터 로딩이 완료되면 isLoading을 false로 설정
+        });
     }, [placeName]);
     // 홈 화면으로 돌아가는 함수
     const goBackToHome = () => {
@@ -155,7 +159,14 @@ function HotPlaceDetail() {
           <div className="title_inf">** 마커를 클릭하면 더 상세한 정보를 얻을 수 있어요!</div>
               필터 (복수 선택 가능)
               <ReFilterButtons selectedFilters={selectedFilters} setSelectedFilters={handleSelectedFiltersChange} />
-                <Map  placeName = {placeName} inf1={culture} inf2={parking} inf3={subway} inf4={bike} selectedFilters = {selectedFilters}/>
+              {isLoading ? (
+                <div> Loading... 잠시만 기다려주세요.</div>  // 데이터 로딩 중 로딩 인디케이터 표시
+              ) : (
+                <div>
+                   <Map  placeName = {placeName} inf1={culture} inf2={parking} inf3={subway} inf4={bike} selectedFilters = {selectedFilters}/>
+                </div>  // 데이터 로딩 완료 후 컨텐츠 표시
+              )}
+               
 
           </div>
         </div>
