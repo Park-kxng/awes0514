@@ -1,0 +1,21 @@
+{
+  "header": {
+    "subtitle": "Discover the hidden sights of Seoul with our AI-based tourism recommendation service",
+    "explain": "From weather forecasts, tourist sites, hot spots, to tour course recommendations! Experience a variety of information related to tourism after searching your current location."
+  },
+  "content": {
+    "title1": "Current Location",
+    "subtitle1": "The service is provided based on your current or desired location.",
+
+    "title2": "What's the tourist weather today?",
+
+    "title3": "Top 5 Hotspots in Seoul",
+    "subtitle3": "Click on a hotspot to see more detailed tourist information!",
+
+    "title4": "Explore Nearby Tourist Sites",
+    "subtitle4": "Multiple filters available - click on a marker to see more details!",
+
+    "title5": "Get Tour Course Recommendations",
+    "subtitle5": "Select a course and we will recommend a tour course around your location!"
+  }
+}
