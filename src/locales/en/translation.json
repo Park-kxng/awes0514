@@ -16,6 +16,10 @@
     "subtitle4": "Multiple filters available - click on a marker to see more details!",
 
     "title5": "Get Tour Course Recommendations",
-    "subtitle5": "Select a course and we will recommend a tour course around your location!"
+    "subtitle5": "Select a course and we will recommend a tour course around your location!",
+    "sel1": "Please select the number of places",
+    "sel2": "Please select the desired category (multiple selections possible)",
+    "recommendBtn": "Get Featured"
+
   }
 }

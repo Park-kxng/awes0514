@@ -15,7 +15,13 @@ import WeatherComponent from "./weather/weather";
 import HotPlaces from './hotPlace/HotPlace';
 import logo from './logo.png'; // 이미지를 올바르게 임포트
 
+// 번역
+import { useTranslation } from "react-i18next";
+
 function App() {
+  const { t } = useTranslation();
+  // const languageRef = useRef<null | HTMLDivElement>(null);
+
   const [currentLocation, setCurrentLocation] = useState('');
 
   const [weatherData, setWeatherData] = useState(null);
@@ -30,6 +36,7 @@ function App() {
 
   const isButtonEnabled = placeNum !== null && selectedRecommendFilters.length > 0;
 
+
   const RecommnedBtnClick = async (placeNum, filters, currentLocation) => {
     console.log("선택한 분류 확인",placeNum, filters)
     // 새로운 페이지로 이동
@@ -42,7 +49,7 @@ function App() {
     <header className="header">
       <div className="app-header-left-content">
         <img className = "img_logo" src={logo} alt="로고 이미지"  />
-        <h4>숨겨진 서울의 모습 찾아서, AI 기반 관광 추천 서비스</h4>
+        <h4>{t('header.subtitle')}</h4>
       </div>
       <div className="app-header-right-content">
        <LanSelection />
@@ -51,14 +58,14 @@ function App() {
     </header>
 
     <div className="body-content">
-    <div className='ex'>날씨, 관광지, 핫플 그리고 관광코스 추천까지! 현재 위치 검색 후 관광에 관련된 다양한 정보를 만나보세요. </div>
+    <div className='ex'>{t('header.explain')}</div>
       <div className="block">
-            <LocationSearchField setWeatherData={setWeatherData} setCurrentLocation = {setCurrentLocation}/>
+            <LocationSearchField setWeatherData={setWeatherData} setCurrentLocation = {setCurrentLocation} t = {t}/>
       </div>
       <div className="item-container">
         <div className="double-item">
           <div className="block_weather">
-            <h2>오늘의 관광날씨는?</h2>
+            <h2>{t('content.title2')}</h2>
             {weatherData && (
               <WeatherComponent
                 temperature={weatherData.temperature}
@@ -91,28 +98,28 @@ function App() {
           
           </div>
           <div className="block_top">
-          <h2>서울의 핫플 Top5</h2>
-          <div className='content'>핫플레이스를 클릭하면 더 자세한 관광정보를 볼 수 있어요!</div>
+          <h2>{t('content.title3')}</h2>
+          <div className='content'>{t('content.subtitle3')}</div>
           <HotPlaces/>
           </div>    
         </div>
       
       
         <div className="block2">
-          <h2>주변 관광지 찾아보기</h2>
-          <div className='content'> 필터 (복수 선택 가능) - 마커를 클릭하면 더 상세한 정보를 볼 수 있어요!</div>
+          <h2>{t('content.title4')}</h2>
+          <div className='content'> {t('content.subtitle4')}</div>
           <ReFilterButtons selectedFilters={selectedFilters} setSelectedFilters={setSelectedFilters} />
           <Map selectedFilters={selectedFilters} gu = {gu} currentLat={lat} currentLng={lng} />
         </div>
       </div>
       
       <div className="block">
-      <h2>관광 코스 추천 받기</h2>
-      <div className='content'> 코스를 선택하면 위치 주변의 관광코스를 추천해드려요! <br/> </div>
+      <h2>{t('content.title5')}</h2>
+      <div className='content'> {t('content.subtitle5')} <br/> </div>
       <br></br>
-      장소의 갯수를 선택해주세요
+      {t('content.sel1')}      
       <NumFilterButtons placeNum={placeNum} setPlaceNum = {setPlaceNum} />
-      원하는 분류를 선택해주세요 (복수선택 가능)
+      {t('content.sel2')}      
       <FilterButtons selectedRecommendFilters = {selectedRecommendFilters} setSelectedRecommendFilters = {setSelectedRecommendFilters}/>
       <div style={{ textAlign: "center" }}>
       </div>
@@ -122,7 +129,7 @@ function App() {
           onClick={() => RecommnedBtnClick(placeNum, selectedRecommendFilters, gu)}
           disabled={!isButtonEnabled}
         >
-          <div className='font'>추천 받기</div>
+          <div className='font'> {t('content.recommendBtn')}</div>
         </button>
       </div>
     </div>

@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { setKey, fromLatLng, fromAddress } from 'react-geocode';
 import WeatherComponent from '../weather/weather';
 import './TextField.css';
-
+// 번역
+import { useTranslation } from "react-i18next";
 const GOOGLE_MAPS_API_KEY = 'AIzaSyCoBqm6ZJlc2QRPAEZ8Op36nAklnfj5DsE'; // Replace with your actual key
 const SEOUL_OPEN_DATA_AUTH_KEY = "515653596b79756a38384a77506645"; // 서울 열린 데이터
 
@@ -152,7 +153,9 @@ function findClosestTouristSpot(latitude, longitude) {
   return closestSpot;
 }
 
-function LocationSearchField({setWeatherData, setCurrentLocation}) {
+function LocationSearchField({setWeatherData, setCurrentLocation, t}) {
+
+
   const inputStyle = {
     color: 'black',
     border: '0px solid gray',
@@ -322,8 +325,8 @@ function LocationSearchField({setWeatherData, setCurrentLocation}) {
     <div>
     <div className="weather_container">
     <div className="container_row_left">
-      <h2>현재 위치</h2> 
-      <h5>현재 위치 혹은 원하는 위치를 기반으로 서비스를 제공합니다.</h5>
+      <h2>{t('content.title1')}</h2> 
+      <h5>{t('content.subtitle1')}</h5>
     </div>
       <div className='textfield_container'>
       <div className="location_button">

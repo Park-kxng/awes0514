@@ -2,15 +2,29 @@ import React, { useState } from 'react';
 import "../recommend/FilterButtons.css";
 import "../App.css";
 import "../Home.css"
+import { useTranslation } from 'react-i18next';
+import i18n from "../locales/i18n.ts";
+
 const FilterButtons = () => {
   // 현재 선택된 버튼의 인덱스를 추적하는 상태 변수
   const [selectedButtonIndex, setSelectedButtonIndex] = useState(null);
 
-  // 버튼 클릭 이벤트 핸들러
   const handleButtonClick = (index) => {
     setSelectedButtonIndex(index); // 선택된 버튼의 인덱스를 업데이트
+    
+    // 언어 코드 설정
+    let language = '';
+    if (index === 0) {
+      language = 'ko'; // 한국어
+    } else if (index === 1) {
+      language = 'en'; // 영어
+    } else if (index === 2) {
+      language = 'ch'; // 중국어
+    }
+  
+    i18n.changeLanguage(language);  // 언어 변경 함수 호출
   };
-
+  
   return (
     <div style={{ fontFamily: 'NanumBarunGothic' }}>
 
