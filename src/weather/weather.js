@@ -1,7 +1,10 @@
 import React from 'react';
 import "./weather.css";
-
+// 번역
+import { useTranslation } from "react-i18next";
 const WeatherComponent = ({ temperature, precipitation, humidity, windSpeed, mes_rain, mes_uv, mes_air}) => {
+  const { t } = useTranslation();
+
   return (
     <div>
         <div className="weather_container">
@@ -13,11 +16,11 @@ const WeatherComponent = ({ temperature, precipitation, humidity, windSpeed, mes
             </div>
             <img src="/png/weather/sun.png" alt="sun" />
         </div>
-        <div className="mes_title"> 강수 관련 메세지 <br/> </div>
+        <div className="mes_title"> {t('content2.subtitle1_weather')} <br/> </div>
         <div className="mes"> {mes_rain} <br/></div>
-        <div className="mes_title">자외선 메세지 <br/> </div>
+        <div className="mes_title">{t('content2.subtitle2_weather')}<br/> </div>
         <div className="mes">{mes_uv} <br/> </div>
-        <div className="mes_title">대기 관련 메세지 <br/> </div>
+        <div className="mes_title">{t('content2.subtitle3_weather')} <br/> </div>
         <div className="mes"> {mes_air} <br/> </div>
     </div>
     

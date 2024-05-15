@@ -17,7 +17,11 @@ import LanSelection from "../language/LanSelection";
 import WeatherComponent from "../weather/weather";
 import HotPlaces from '../hotPlace/HotPlace';
 
+// 번역
+import { useTranslation } from "react-i18next";
 function HotPlaceDetail() {
+    const { t } = useTranslation();
+
     const [weatherData, setWeatherData] = useState(null);
     const [idx, setIdx] = useState(null);
     const [msg, setMsg] = useState(null);
@@ -98,12 +102,12 @@ function HotPlaceDetail() {
     };
     return (
         <div className="app_container">
-        <header className="header">
+        <header className="header2">
           <div className="app-header-left-content">
             <h1>TOP {index}.  {placeName}</h1>
             {/* <h4>숨겨진 서울의 모습 찾아서, AI 기반 관광 추천 서비스</h4> */}
              {/* 받아온 데이터를 표시 */}
-             <button class="home-button" onClick={goBackToHome}> 홈 화면으로 돌아가기</button>
+             <button class="home-button" onClick={goBackToHome}> {t('header2.home')}</button>
           </div>
           <div className="app-header-right-content">
            <LanSelection/>
@@ -114,7 +118,7 @@ function HotPlaceDetail() {
         
           <div className="item-container">
               <div className="block_detail">
-                <h2>{placeName} 의 날씨</h2>
+                <h2>{placeName} {t('content2.title1')}</h2>
                 {weatherData && (
                   <WeatherComponent
                     temperature={weatherData.TEMP}
@@ -131,16 +135,16 @@ function HotPlaceDetail() {
                 
             </div>
             <div className="block_detail">
-              <h2>{placeName} 의 인구비율 </h2>
+              <h2>{placeName}  {t('content2.title2')} </h2>
               {peopleData && (
                     <>              
-                        <div className="mes_title"> 지역 혼잡도 <br/> </div>
+                        <div className="mes_title"> {t('content2.subtitle1_people')} <br/> </div>
                         <div className="mes"> {peopleData.AREA_CONGEST_LVL} <br/></div>
-                        <div className="mes_title"> 혼잡도 관련 메세지 <br/> </div>
+                        <div className="mes_title"> {t('content2.subtitle2_people')} <br/> </div>
                         <div className="mes">{peopleData.AREA_CONGEST_MSG} <br/> </div>
-                        <div className="mes_title"> 거주자의 인구 비율 <br/> </div>
+                        <div className="mes_title">{t('content2.subtitle3_people')} <br/> </div>
                         <div className="mes">{peopleData.RESNT_PPLTN_RATE}% <br/> </div>
-                        <div className="mes_title"> 비거주자 (관광객 등)의 인구 비율 <br/> </div>
+                        <div className="mes_title"> {t('content2.subtitle4_people')} <br/> </div>
                         <div className="mes">{peopleData.NON_RESNT_PPLTN_RATE}% <br/> </div>
                     </>
                 )}
@@ -148,20 +152,20 @@ function HotPlaceDetail() {
             </div>  
           
             <div className="block_detail2">
-              <h2>{placeName} 의 도로 상황</h2>
-              <div className="mes_title"> 도로 혼잡도 <br/> </div>
+              <h2>{placeName}  {t('content2.title3')}</h2>
+              <div className="mes_title"> {t('content2.subtitle1_road')} <br/> </div>
                 <div className="mes"> {idx} <br/></div>
-                <div className="mes_title"> 도로 관련 메세지 <br/> </div>
+                <div className="mes_title">{t('content2.subtitle2_road')} <br/> </div>
                 <div className="mes">{msg} <br/> </div>
-                <div className="mes_title">도로 평균 속도 <br/> </div>
+                <div className="mes_title">{t('content2.subtitle3_road')} <br/> </div>
                 <div className="mes"> {spd} km/h <br/> </div>
             </div>
           </div>
           
           <div className="block">
-          <h2>{placeName} 의 교통상황</h2>
-          <div className="title_inf">** 마커를 클릭하면 더 상세한 정보를 얻을 수 있어요!</div>
-              필터 (복수 선택 가능)
+          <h2>{placeName} {t('content2.title4')}</h2>
+          <div className="title_inf">{t('content2.subtitle1_traffic')}!</div>
+          {t('content2.subtitle2_traffic')}
               <ReFilterButtons selectedFilters={selectedFilters} setSelectedFilters={handleSelectedFiltersChange} />
               {isLoading ? (
                 <div> Loading... 잠시만 기다려주세요.</div>  // 데이터 로딩 중 로딩 인디케이터 표시

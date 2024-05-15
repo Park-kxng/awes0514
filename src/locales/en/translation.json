@@ -20,6 +20,54 @@
     "sel1": "Please select the number of places",
     "sel2": "Please select the desired category (multiple selections possible)",
     "recommendBtn": "Get Featured"
+    
+  },
+  "header2": {
+    "home": "Return to Home Screen"
+  },
+  "content2": {
+    "title1": "Weather",
+    "subtitle1_weather": "Precipitation Message",
+    "subtitle2_weather": "UV Message",
+    "subtitle3_weather": "Air Quality Message",
 
+    "title2": "Population Ratio",
+    "subtitle1_people": "Local Congestion Level",
+    "subtitle2_people": "Congestion Message",
+    "subtitle3_people": "Resident Population Ratio",
+    "subtitle4_people": "Non-resident (Tourist, etc.) Population Ratio",
+
+    "title3": "Road Conditions",
+    "subtitle1_road": "Road Congestion Level",
+    "subtitle2_road": "Road-related Message",
+    "subtitle3_road": "Average Road Speed",
+
+    "title4": "Traffic Conditions",
+    "subtitle1_traffic": "Click on markers for more detailed information!",
+    "subtitle2_traffic": "Filter (multiple selections possible)"
+  },
+  "header3": {
+    "title": "Tourist Course Recommendations"
+  },
+
+  "content3": {
+      "title1": "Tourist Courses Recommended by Us!",
+      "subtitle1": "Click on the markers for more detailed information."
+  },
+
+  "kind": {
+      "k1": "Tourist Attractions",
+      "k2": "Landmarks",
+      "k3": "Culture",
+      "k4": "Shopping",
+      "k5": "Nature",
+      "k6": "Food",
+      "k7": "Foreigner",
+      "k8": "Culture",
+      "k9": "Parking",
+      "k10": "Subway",
+      "k11": "Bicycle"
   }
+
+
 }

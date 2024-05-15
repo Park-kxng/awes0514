@@ -9,8 +9,12 @@ import "../hotPlace/HotPlace.css"
 import "./RecommendDetail.css"
 import Map  from './Map.js';
 import LanSelection from "../language/LanSelection";
+// 번역
+import { useTranslation } from "react-i18next";
 
 function RecommendDetail(  ) {
+    const { t } = useTranslation();
+
     const { placeNum, filters, currentLocation } = useParams();
     const navigate = useNavigate();
 
@@ -73,8 +77,8 @@ function RecommendDetail(  ) {
         <div className="app_container">
             <header className="header">
                 <div className="app-header-left-content">
-                    <h1>관광 코스 추천</h1>
-                    <button className="home-button" onClick={goBackToHome}>홈 화면으로 돌아가기</button>
+                    <h1>{t('header3.title')}</h1>
+                    <button className="home-button" onClick={goBackToHome}>{t('header2.home')}</button>
                 </div>
                 <div className="app-header-right-content">
                     <LanSelection />
@@ -82,8 +86,8 @@ function RecommendDetail(  ) {
             </header>
             <div className="body-content">
                 <div className="block3">
-                    <h2>어서울이 추천하는 관광코스!</h2> 
-                    <div className='detail'>마커를 클릭하면 더 상세한 정보를 볼 수 있어요.     </div>              
+                    <h2>{t('content3.title1')}</h2> 
+                    <div className='detail'>{t('content3.subtitle1')}</div>              
                     <Map allData = {allData}  allselectedFilters={filters} gu = {currentLocation} currentLat={37.659223} currentLng={127.050265}/>
                 </div>
                 <div className="container-row">
@@ -106,7 +110,7 @@ function RecommendDetail(  ) {
                                                 <p className='top_content'>{item.phoneNumber}</p>
                                                 {key == "명소" && (
                                                      <>
-                                                     <p className='top_title'> 명소인경우 </p>
+                                                     <p className='top_title'> 웹사이트 </p>
                                                      <p className='top_content'><a href={item.website} target="_blank" rel="noopener noreferrer">{item.website}</a></p>
                                                     </>
                                                 )}
