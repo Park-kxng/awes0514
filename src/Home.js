@@ -1,6 +1,6 @@
 // src/Home.js
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Map from './search/Map.js';
 import { useNavigate } from 'react-router-dom';
 import "./App.css";
@@ -22,7 +22,7 @@ function App() {
   const { t } = useTranslation();
   // const languageRef = useRef<null | HTMLDivElement>(null);
 
-  const [currentLocation, setCurrentLocation] = useState('');
+  const [currentLocation, setCurrentLocation] = useState({});
 
   const [weatherData, setWeatherData] = useState(null);
   const [selectedFilters, setSelectedFilters] = useState([]); 
@@ -31,16 +31,33 @@ function App() {
   const [selectedRecommendFilters, setSelectedRecommendFilters] = useState([]); 
   const [placeNum, setPlaceNum] = useState(null); 
 
-  const{gu ,lat ,lng} = currentLocation;
+  const [gu, setGu] = useState(null); 
+  const [lat, setLat] = useState(null); 
+  const [lng, setLng] = useState(null); 
+
   const navigate = useNavigate();
 
   const isButtonEnabled = placeNum !== null && selectedRecommendFilters.length > 0;
 
+  useEffect(() => {
+    console.log("Current location updated:------------", currentLocation.gu, currentLocation.latitude, currentLocation.longitude);
+    // 여기서 currentLocation의 속성을 직접 사용
+    setGu(currentLocation.gu)
+    setLng(currentLocation.longitude)
+    setLat(currentLocation.latitude)
+    
+  }, [currentLocation]); // currentLocation이 변경될 때마다 실행
+  
 
-  const RecommnedBtnClick = async (placeNum, filters, currentLocation) => {
-    console.log("선택한 분류 확인",placeNum, filters)
+
+  const RecommnedBtnClick = async (placeNum, filters) => {
+    console.log("Parsed placeNum:", parseInt(placeNum));
+    console.log("Incremented placeNum:", parseInt(placeNum) + 1);
+    console.log("선택한 분류 확인", parseInt(placeNum) + 1, filters);
+    
     // 새로운 페이지로 이동
-    navigate(`/recommend/${currentLocation}/${placeNum}/${filters}`); // useHistory 대신 useNavigate 사용
+    navigate(`/recommend/${gu}/${lat}/${lng}/${parseInt(placeNum) + 1}/${filters}`);
+    
   }
 
   return (
@@ -126,7 +143,7 @@ function App() {
 
         <button
           className={isButtonEnabled ? "recommand_button_selected" : "recommand_button"}
-          onClick={() => RecommnedBtnClick(placeNum, selectedRecommendFilters, gu)}
+          onClick={() => RecommnedBtnClick(placeNum, selectedRecommendFilters)}
           disabled={!isButtonEnabled}
         >
           <div className='font'> {t('content.recommendBtn')}</div>

@@ -192,6 +192,7 @@ function LocationSearchField({setWeatherData, setCurrentLocation, t}) {
                 const splittedAddress = address.split(' ');
                 const gu = splittedAddress.find(part => part.endsWith('구'));
                 setCurrentLocation({ gu, latitude, longitude }); // 구 정보와 위도, 경도 저장
+                console.log("위도와 경도 저장 완료 :",latitude, longitude )
                 setInputValue(address);
               } else {
                 setInputValue('Unable to find address.');

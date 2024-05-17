@@ -17,7 +17,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/hotplaces/:placeName/:index" element={<HotPlaceDetail />} />
-          <Route path="/recommend/:currentLocation/:placeNum/:filters" element={< RecommendDetail/>} />
+          <Route path="/recommend/:gu/:lat/:lng/:placeNum/:filters" element={< RecommendDetail/>} />
         </Routes>
 
       </Router>

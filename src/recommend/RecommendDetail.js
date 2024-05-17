@@ -15,7 +15,7 @@ import { useTranslation } from "react-i18next";
 function RecommendDetail(  ) {
     const { t } = useTranslation();
 
-    const { placeNum, filters, currentLocation } = useParams();
+    const { placeNum, filters, gu,lat,lng } = useParams();
     const navigate = useNavigate();
 
     const [allData, setAllData] = useState({});
@@ -43,15 +43,14 @@ function RecommendDetail(  ) {
     // Fetch data from the API
     const fetchData = async () => {
         try {
-            const categories = filters.split(',').map(filter => filterTrans[filter]).join(',');
-            console.log(currentLocation, placeNum, filters)
-            const response = await fetch(`/awes-api/recommend?latitude=37.659223&longitude=127.050265&num=${placeNum}&category=${filters}`);
+            const response = await fetch(`/awes-api/recommend?latitude=${lat}&longitude=${lng}&num=${placeNum}&category=${filters}`);
             // const response = await fetch(`http://3.39.223.21:8080/recommend?latitude=37.659223&longitude=127.050265&num=${placeNum}&category=${filters}`);
             console.log(response)
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
             const data = await response.json();
+            console.log(data)
             setAllData(data);
             console.log(data);
 
@@ -88,7 +87,7 @@ function RecommendDetail(  ) {
                 <div className="block3">
                     <h2>{t('content3.title1')}</h2> 
                     <div className='detail'>{t('content3.subtitle1')}</div>              
-                    <Map allData = {allData}  allselectedFilters={filters} gu = {currentLocation} currentLat={37.659223} currentLng={127.050265}/>
+                    <Map allData = {allData}  allselectedFilters={filters} gu = {gu} currentLat={lat} currentLng={lng}/>
                 </div>
                 <div className="container-row">
 
