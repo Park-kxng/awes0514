@@ -40,13 +40,12 @@ function App() {
   const isButtonEnabled = placeNum !== null && selectedRecommendFilters.length > 0;
 
   useEffect(() => {
-    console.log("Current location updated:------------", currentLocation.gu, currentLocation.latitude, currentLocation.longitude);
-    // 여기서 currentLocation의 속성을 직접 사용
-    setGu(currentLocation.gu)
-    setLng(currentLocation.longitude)
-    setLat(currentLocation.latitude)
-    
-  }, [currentLocation]); // currentLocation이 변경될 때마다 실행
+    console.log("Current location updated:", currentLocation, currentLocation.gu, currentLocation.lat, currentLocation.lng);
+    setGu(currentLocation.gu); // 구 정보 설정
+    setLat(currentLocation.lat); // 위도 설정
+    setLng(currentLocation.lng); // 경도 설정
+}, [currentLocation]); // currentLocation이 변경될 때마다 실행
+
   
 
 

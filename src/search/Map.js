@@ -55,6 +55,8 @@ const Map = ({ selectedFilters ,gu, currentLat, currentLng}) => {
   const fetchData = async (category) => {
     try {
       const response = await fetch(`/awes-api/searchOneCategory?address=${gu}&category=${category}`);
+
+      // const response = await fetch(`http://3.39.223.21:8080/searchOneCategory?address=${gu}&category=${category}`);
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }

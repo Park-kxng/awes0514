@@ -23,14 +23,14 @@ const markerIcons = {
 };
 
 // Translation dictionary to map filters to DB fields
-let filterTrans = {
+const filterTrans = {
     "tourStreetKor" : "관광거리",
-    "attractions":"명소",
-    "entertainment":"문화",
-    "shoppings":"쇼핑",
-    "nature":  "자연",
-    "restaurants":"음식",
-    "tourInformations":"외국인" 
+    "attractions": "명소",
+    "entertainment": "문화",
+    "shoppings": "쇼핑",
+    "nature": "자연",
+    "restaurants": "음식",
+    "tourInformations": "외국인" 
 };
 
 const Map = ({ allData, gu, currentLat, currentLng }) => {
@@ -52,16 +52,19 @@ const Map = ({ allData, gu, currentLat, currentLng }) => {
       console.error("Geolocation is not supported by this browser.");
     }
   }, []);
+
   useEffect(() => {
     console.log("지도 확인용 ----------", allData);
   }, [allData]);
-  
+
   useEffect(() => {
     console.log(currentLat, currentLng);
-    setCurrentPosition({
-      lat: currentLat,
-      lng: currentLng
-    });
+    if (isFinite(currentLat) && isFinite(currentLng)) {
+      setCurrentPosition({
+        lat: currentLat,
+        lng: currentLng
+      });
+    }
   }, [currentLat, currentLng]);
 
   const handleMarkerClick = (marker) => {
@@ -82,10 +85,7 @@ const Map = ({ allData, gu, currentLat, currentLng }) => {
       <Marker position={currentPosition} title="현재 위치" />
 
       {Object.keys(allData).map((originalKey, index) => {
-                console.log(originalKey)
-
         const translatedKey = filterTrans[originalKey];
-        console.log(translatedKey)
         if (translatedKey && allData[originalKey] && allData[originalKey].length > 0) {
           return allData[originalKey].map((marker, markerIndex) => (
             <Marker
@@ -102,7 +102,7 @@ const Map = ({ allData, gu, currentLat, currentLng }) => {
 
       {activeMarker && (
         <InfoWindow
-          position={{ lat: parseFloat(activeMarker.lat), lng: parseFloat(activeMarker.lng) }}
+          position={{ lat: parseFloat(activeMarker.latitude), lng: parseFloat(activeMarker.longitude) }}
           onCloseClick={handleInfoWindowClose}
         >
           <div>
@@ -115,7 +115,6 @@ const Map = ({ allData, gu, currentLat, currentLng }) => {
       )}
     </GoogleMap>
   );
-
 };
 
 export default Map;

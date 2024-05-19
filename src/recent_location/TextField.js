@@ -191,7 +191,7 @@ function LocationSearchField({setWeatherData, setCurrentLocation, t}) {
                 // 주소에서 구 정보 추출
                 const splittedAddress = address.split(' ');
                 const gu = splittedAddress.find(part => part.endsWith('구'));
-                setCurrentLocation({ gu, latitude, longitude }); // 구 정보와 위도, 경도 저장
+                setCurrentLocation({ gu:gu, lat:latitude, lng:longitude }); // 구 정보와 위도, 경도 저장
                 console.log("위도와 경도 저장 완료 :",latitude, longitude )
                 setInputValue(address);
               } else {
@@ -308,7 +308,8 @@ function LocationSearchField({setWeatherData, setCurrentLocation, t}) {
           // 주소에서 구 정보 추출
           const splittedAddress = address.split(' ');
           const gu = splittedAddress.find(part => part.endsWith('구'));
-          setCurrentLocation({ gu:gu, lat : location.lat, lng: location.lng });
+          console.log("위치확인 로그---------------------",location['lat'], location['lng'])
+          setCurrentLocation({ gu:gu, lat : location['lat'], lng: location['lng'] });
 
           console.log(gu, location.lat, location.lng);
         }
